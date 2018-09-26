@@ -23,6 +23,9 @@ class Adapter{
 
   static unlikeABook(book){
     book.users.splice(book.users.indexOf({'id': 1, 'username': 'pouros'}), 1)
+    if(book.users.length === undefined){
+      book.users= []
+    }
     return fetch(`http://localhost:3000/books/${book.id}`, {
       method: "PATCH",
       headers: {

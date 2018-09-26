@@ -9,13 +9,20 @@ class Book{
   }
 
   render(){
+    if(this.users === undefined){
+      this.users = []
+    }
+    let currentUser = this.users.find( user => {
+      return user.id === 1
+    })
+    let buttonText = this.users.indexOf(currentUser) === -1 ? 'Like This Book' : 'Unlike This Book'
     return (
       `
       <h1>${this.title}</h1>
       <img src=${this.img_url}>
       <p>${this.description}</p>
       <h3>Users who like this book:</h3>
-      <button class="like-button" id="like-book-${this.id}">Like This Book</button>
+      <button class="like-button" id="like-book-${this.id}">${buttonText}</button>
       <ul>
         ${this.displayUsers()}
       </ul>
